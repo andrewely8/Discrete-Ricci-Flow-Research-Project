@@ -1,0 +1,25 @@
+We want to determine if given a graph, if we preform Ricci Curvature on the graph, does the evolution of the edge weights converge to a solution.
+First we need to show that for any iteration during the evolution of edge weights, there always exists a solution and that solution is unique. By solution we mean the edge weights are real values or computable. This is because if we had a evolution with holes in it (no solution at some iteration), or if we had an evolution where the solution is the same at different iterations, then we wouldn't have a continuous function, and then we can't have convergence. 
+
+The paper proves convergence for graphs that are of "path" type or "star" type. A natural extension of this paper would be to find other graph types that also have provable convergence. One graph type that stands out is a binary tree because it is somewhat similar to a path graph since its like a connected graph of components of simple paths. 
+
+So we can try to follow the reasoning in the paper and form a proof for binary trees, but in order to do that we need carefully ensure that the assumptions or statements the paper made to prove convergence with start or path graphs holds for binary tree graphs, because otherwise the papers reasoning won't necessarily apply to the binary tree graph type and we wouldn't be able to use similar reasoning. So if we can't guarantee the assumptions hold, then we might have to restructure a lot of things about the proof. 
+
+Assumption: The long-time existence and uniqueness of solutions for the graph during Ricci flow evolution holds given that every edge in the graph is always the shortest path between the endpoints of that edge at any given iteration. This seems to hold well for binary trees because any given edge that connects two nodes has no other paths besides that edge. So this seems to mean that "Theorem 3" from the paper will apply to any binary tree.
+
+The paper mentions that they proved convergence for path graphs of length two, but they also proved that the unnormalized and normalized Ricci flow are proportional so this might mean that since it converges for paths of length 2, then it converges for all paths since the path of length 2 can be proportional to longer paths.
+
+They also state definitions that seem to imply that any graph under our assumption that the shortest distance between two nodes in an edge is the edge weight has Ricci curvature upper bounded by 2. This seems to be because of normalization, not because of the structure of a particular graph (other than following the assumption structure). So then it seems that a binary tree follows that the upper bound of Ricci curvature between two nodes is 2. 
+
+yes, they show that there is convergence for a path graph of length 2, and then they show that any path graph of length >= 3 transforms into a path of length 2.
+
+They then prove a lower bound as equation (7) on page 7. Again, it seems that we still only have the one assumption (all edge weights are the shortest path between the nodes of the edge). So it seems like we have an upper and lower bound for Ricci curvature between any nodes at any point in time in any binary tree.
+
+Now that there is a lower and upper bound, they can show that the evolution of continuous Ricci flow has a solution that exists and is unique for any point in time.
+
+Note: time is not the same as iterations. When we are talking about any point in time of the Ricci flow, we are talking about the continuous evolution of the Ricci curvature over the positive real number t. But iterations are discrete integers. So we can think of "any point in time" as being like any iteration, plus any 'sub-iteration' between iterations, such that there are infinite iterations between any two iterations.
+
+It seems important to make a distinction between the paper about Discrete Ricci Flow for community detection and this theory paper... this theory paper is talking about a continuous Ricci Flow, not a discrete Ricci flow. So proving convergence for a graph type is not going to come from the Discrete Ricci flow algorithm. 
+
+
+ 

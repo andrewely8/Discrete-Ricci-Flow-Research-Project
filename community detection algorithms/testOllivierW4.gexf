@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2026-01-26">
+    <creator>NetworkX 3.5</creator>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <attributes mode="static" class="edge">
+      <attribute id="0" title="curvature" type="double" />
+    </attributes>
+    <nodes>
+      <node id="0" label="0" />
+      <node id="1" label="1" />
+      <node id="2" label="2" />
+      <node id="3" label="3" />
+      <node id="4" label="4" />
+      <node id="5" label="5" />
+      <node id="6" label="6" />
+      <node id="7" label="7" />
+      <node id="8" label="8" />
+      <node id="9" label="9" />
+      <node id="10" label="10" />
+      <node id="11" label="11" />
+      <node id="12" label="12" />
+      <node id="13" label="13" />
+      <node id="14" label="14" />
+      <node id="15" label="15" />
+      <node id="16" label="16" />
+      <node id="17" label="17" />
+      <node id="18" label="18" />
+      <node id="19" label="19" />
+      <node id="20" label="20" />
+      <node id="21" label="21" />
+      <node id="22" label="22" />
+      <node id="23" label="23" />
+      <node id="24" label="24" />
+      <node id="25" label="25" />
+      <node id="26" label="26" />
+      <node id="27" label="27" />
+      <node id="28" label="28" />
+      <node id="29" label="29" />
+      <node id="30" label="30" />
+      <node id="31" label="31" />
+      <node id="32" label="32" />
+      <node id="33" label="33" />
+    </nodes>
+    <edges>
+      <edge source="0" target="1" id="0" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="2" id="1" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="3" id="2" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="4" id="3" label="(w=3.97,k=-0.0)" weight="3.97">
+        <attvalues>
+          <attvalue for="0" value="-0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="5" id="4" label="(w=3.97,k=-0.0)" weight="3.97">
+        <attvalues>
+          <attvalue for="0" value="-0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="6" id="5" label="(w=3.97,k=-0.0)" weight="3.97">
+        <attvalues>
+          <attvalue for="0" value="-0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="7" id="6" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="10" id="7" label="(w=3.97,k=-0.0)" weight="3.97">
+        <attvalues>
+          <attvalue for="0" value="-0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="11" id="8" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="12" id="9" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="13" id="10" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="17" id="11" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="19" id="12" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="0" target="21" id="13" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="1" target="2" id="14" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="1" target="3" id="15" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="1" target="7" id="16" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="1" target="13" id="17" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="1" target="17" id="18" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="1" target="19" id="19" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="1" target="21" id="20" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="2" target="3" id="21" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="2" target="7" id="22" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="2" target="9" id="23" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="2" target="13" id="24" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="3" target="7" id="25" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="3" target="12" id="26" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="3" target="13" id="27" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="4" target="6" id="28" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="4" target="10" id="29" label="(w=0.1,k=0.49)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.49" />
+        </attvalues>
+      </edge>
+      <edge source="5" target="6" id="30" label="(w=0.1,k=0.51)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.51" />
+        </attvalues>
+      </edge>
+      <edge source="5" target="10" id="31" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="5" target="16" id="32" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="6" target="16" id="33" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="8" target="30" id="34" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+      <edge source="8" target="32" id="35" label="(w=0.1,k=0.02)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.02" />
+        </attvalues>
+      </edge>
+      <edge source="8" target="33" id="36" label="(w=0.1,k=0.03)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.03" />
+        </attvalues>
+      </edge>
+      <edge source="14" target="32" id="37" label="(w=0.1,k=0.03)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.03" />
+        </attvalues>
+      </edge>
+      <edge source="14" target="33" id="38" label="(w=0.1,k=0.02)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.02" />
+        </attvalues>
+      </edge>
+      <edge source="15" target="32" id="39" label="(w=0.1,k=0.03)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.03" />
+        </attvalues>
+      </edge>
+      <edge source="15" target="33" id="40" label="(w=0.1,k=0.02)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.02" />
+        </attvalues>
+      </edge>
+      <edge source="18" target="32" id="41" label="(w=0.1,k=0.03)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.03" />
+        </attvalues>
+      </edge>
+      <edge source="18" target="33" id="42" label="(w=0.1,k=0.02)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.02" />
+        </attvalues>
+      </edge>
+      <edge source="20" target="32" id="43" label="(w=0.1,k=0.03)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.03" />
+        </attvalues>
+      </edge>
+      <edge source="20" target="33" id="44" label="(w=0.1,k=0.02)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.02" />
+        </attvalues>
+      </edge>
+      <edge source="22" target="32" id="45" label="(w=0.1,k=0.03)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.03" />
+        </attvalues>
+      </edge>
+      <edge source="22" target="33" id="46" label="(w=0.1,k=0.02)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.02" />
+        </attvalues>
+      </edge>
+      <edge source="23" target="25" id="47" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="23" target="27" id="48" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="23" target="29" id="49" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="24" target="25" id="50" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="24" target="27" id="51" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="24" target="31" id="52" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="25" target="31" id="53" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="26" target="29" id="54" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="28" target="31" id="55" label="(w=0.1,k=0.11)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.11" />
+        </attvalues>
+      </edge>
+      <edge source="30" target="32" id="56" label="(w=0.1,k=0.03)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.03" />
+        </attvalues>
+      </edge>
+      <edge source="30" target="33" id="57" label="(w=0.1,k=0.03)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.03" />
+        </attvalues>
+      </edge>
+      <edge source="32" target="33" id="58" label="(w=0.1,k=0.0)" weight="0.1">
+        <attvalues>
+          <attvalue for="0" value="0.0" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>
