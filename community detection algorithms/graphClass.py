@@ -107,6 +107,8 @@ class CurvatureGraph(object):
 		for edge in self.edges:
 				if round(edge['weight'],2) == 0:
 					edge['weight'] = 0.1 #ensure near zero edge weights aren't rounded to 0
+				if edge['curvature'] == None:
+					edge['curvature'] = 0 #In case we are drawing a graph with no curvature defined (we did not do Ricci Flow on it)
 				edge_label = f"(w={round(edge['weight'],2)},k={round(edge['curvature'],2)})"
 				nxGraph.add_edge(edge['u'],edge['v'],weight=round(edge['weight'],2),curvature=round(edge['curvature'],2),label=edge_label)
 		pos = nx.spring_layout(nxGraph)
@@ -130,4 +132,6 @@ class CurvatureGraph(object):
 			nx.write_gexf(nxGraph,savePath)
 		if display:
 			plt.show()
+
+		return(nxGraph) #if we want the networkX data structure.
 
