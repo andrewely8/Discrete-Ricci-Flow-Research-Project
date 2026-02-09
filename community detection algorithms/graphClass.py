@@ -118,16 +118,36 @@ class CurvatureGraph(object):
 	#We will assign each community a unique color, and each node in our graph gets assigned its communities color.
 	def getCommunities(self):
 		comms = []
-		current = {}
+		for edge in self.edges:
+			found = False
+			for i, c in enumerate(comms):
+				if edge['u'] in c or edge['v'] in c:
+					c.add(edge['u'])
+					c.add(edge['v'])
+					found = True
+			if not found:
+				comms.append({edge['u'],edge['v']})
 
 		return comms
 
+	def getColorMap(self,comms):
+		cMap = {}
 
-	def drawGraph(self,display=True,savePath=None, colorMap = None):
+		for i,com in enumerate(comms):
+			for node in com:
+				colorsIndex = i % len(colors)
+				assignColor = colors[colorsIndex]
+				colorString = f"{assignColor[0]},{assignColor[1]},{assignColor[2]}"
+				cMap[node] = colorString
+
+		return cMap
+
+	def drawGraph(self,display=True,savePath=None, communities = None):
 		nxGraph = nx.Graph()
 		nxGraph.add_nodes_from(self.nodes)
 
-		if colorMap:
+		if communities:
+			colorMap = self.getColorMap(communities)
 			nx.set_node_attributes(nxGraph,colorMap,'color')
 
 		for edge in self.edges:

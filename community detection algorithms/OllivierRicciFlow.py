@@ -74,7 +74,10 @@ def Ollivier(Graph,maxIterations,normalize=True):
 	cutEdges(Graph,2)
 	for edge in Graph.edges:
 		print(edge)
-	Graph.drawGraph(display=True,savePath='testFootballOllivierW4.gexf')
+
+	communities = myGraph.getCommunities()
+	Graph.drawGraph(display=True,savePath='testfootballW4.gexf', communities=communities)
+
 
 
 myGraph = graphClass.CurvatureGraph(graphNetworks.football)
