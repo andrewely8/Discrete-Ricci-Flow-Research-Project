@@ -99,10 +99,19 @@ class CurvatureGraph(object):
 		return adj
 
 
+	#implement identifyCommunities function to identify communites
+	#output a list of sets [{},{},...] where each set is a community, that is a set of node ids.
+	#We will assign each community a unique color, and each node in our graph gets assigned its communities color.
+	def identifyCommunities(self):
+		pass
 
-	def drawGraph(self,display=True,savePath=None):
+
+	def drawGraph(self,display=True,savePath=None, colorMap = None):
 		nxGraph = nx.Graph()
 		nxGraph.add_nodes_from(self.nodes)
+
+		if colorMap:
+			nx.set_node_attributes(nxGraph,colorMap,'ColorOfNode')
 
 		for edge in self.edges:
 				if round(edge['weight'],2) == 0:

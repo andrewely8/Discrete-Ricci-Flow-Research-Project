@@ -71,13 +71,13 @@ def Ollivier(Graph,maxIterations,normalize=True):
 	#Display results and end graph
 	for edge in Graph.edges:
 		print(edge)
-	cutEdges(Graph,4)
+	cutEdges(Graph,2)
 	for edge in Graph.edges:
 		print(edge)
-	Graph.drawGraph(display=True,savePath='testOllivierW4.gexf')
+	Graph.drawGraph(display=True,savePath='testFootballOllivierW4.gexf')
 
 
-myGraph = graphClass.CurvatureGraph(graphNetworks.zacharyKarateClub)
-Ollivier(myGraph,maxIterations=100,normalize=False)
+myGraph = graphClass.CurvatureGraph(graphNetworks.football)
+Ollivier(myGraph,maxIterations=50,normalize=False)
 
 

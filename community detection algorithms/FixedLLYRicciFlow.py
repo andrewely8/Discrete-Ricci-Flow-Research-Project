@@ -114,8 +114,8 @@ def FixedLLY(Graph,maxIterations,normalize=True):
 		print(edge)
 		if edge['weight'] < 0:
 			edge['weight'] = 0.1 #prevent negative edge weights for display purposes
-	Graph.drawGraph(display=True,savePath='testFixedLLY.gexf')
+	Graph.drawGraph(display=True,savePath='testFootballFixedLLY.gexf')
 
 
-myGraph = graphClass.CurvatureGraph(graphNetworks.zacharyKarateClub)
+myGraph = graphClass.CurvatureGraph(graphNetworks.football)
 FixedLLY(myGraph,maxIterations=1,normalize=True)

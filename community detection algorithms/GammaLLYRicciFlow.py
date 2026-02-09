@@ -89,11 +89,11 @@ def GammaLLY(Graph,maxIterations,normalize=True):
 	#Display results and end graph
 	for edge in Graph.edges:
 		print(edge)
-	cutEdges(Graph,4)
+	cutEdges(Graph,2)
 	for edge in Graph.edges:
 		print(edge)
-	Graph.drawGraph(display=True,savePath='testGammaLLY.gexf')
+	Graph.drawGraph(display=True,savePath='testFootballGammaLLY.gexf')
 
 
-myGraph = graphClass.CurvatureGraph(graphNetworks.zacharyKarateClub)
-GammaLLY(myGraph,maxIterations=15,normalize=False)
+myGraph = graphClass.CurvatureGraph(graphNetworks.football)
+GammaLLY(myGraph,maxIterations=10,normalize=False)
