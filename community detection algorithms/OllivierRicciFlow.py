@@ -6,34 +6,27 @@ import ot
 #Ollivier Curvature
 #based on 'SUPPLEMENTARY_Community Detection on Network with Ricci Flow'
 
-def computeMassDistribution(Graph,vertex,adjMatrix,alpha=0.5,p=2):
+epsilon = 10**(-3) #only for division by zero checks
+
+def computeMassDistribution(vertex,adjMatrix,costMatrix,alpha=0.5,p=2):
 	neighborSet = adjMatrix[vertex]
 	distribution = [0 for _ in range(len(neighborSet))]
 
 	C = 0
 	for i in range(len(neighborSet)):
-		if neighborSet[i] != None:
-			C += np.exp(-1*((Graph.shortestPath(vertex,i,adjMatrix))**p))
+		if neighborSet[i] != None and neighborSet[i] != 0: #any adjacent vertex
+			C += np.exp(-1*((costMatrix[vertex][i])**p))
 
-	for i,weight in enumerate(neighborSet):
-		if weight != None:
-			distribution[i] = ((1-alpha)/C) * np.exp(-1*((Graph.shortestPath(vertex,i,adjMatrix))**p))
-	distribution[vertex] = alpha 
+	for i in range(len(neighborSet)):
+		if i == vertex: 
+			distribution[i] = alpha
+		elif neighborSet[i] == None or neighborSet[i] == 0: #not a neighbor
+			distribution[i] = 0
+		else: #neighbor
+			distribution[i] = ((1-alpha)/C) * np.exp(-1*((costMatrix[vertex][i])**p))
 
 	return distribution
 
-def wasserstein(m_u,m_v,costMatrix):
-	dist = ot.emd2(m_u,m_v,costMatrix)
-	return dist
-
-def computeCurvature(Graph,u,v,edgeWeight,adjMatrix,costMatrix):
-	d = Graph.shortestPath(u,v,adjMatrix)
-	d = costMatrix[u][v]
-	m_u = computeMassDistribution(Graph,u,adjMatrix)
-	m_v = computeMassDistribution(Graph,v,adjMatrix)
-	w = wasserstein(m_u,m_v,costMatrix)
-	curvature = 1 - (w/d)
-	return curvature
 
 def cutEdges(Graph, cutThreshold):
 	for edge in Graph.edges[:]: #iterate over a copy of the list
@@ -41,46 +34,49 @@ def cutEdges(Graph, cutThreshold):
 			Graph.removeEdge(edge)
 			print('removed edge: ', edge)
 
-def Ollivier(Graph,maxIterations,normalize=True):
+
+def Ollivier(Graph,maxIterations,stepSize = 0.1):
 	
-	if normalize: #normalize at t=0 before flow evolution
-		totalWeight = 0
-		for edge in Graph.edges:
-			totalWeight += edge['weight']
-		for edge in Graph.edges:
-			edge['weight'] = edge['weight']/totalWeight
 
 	for iteration in range(maxIterations):
+		print('iteration -- ', iteration)
 		adjMatrix = Graph.getAdjacencyMatrix()
 		costMatrix = Graph.getCostMatrix(adjMatrix)
+
+		#Normalize edge weights
+		denominator = 0
 		for edge in Graph.edges:
-			edge['curvature'] = computeCurvature(Graph,edge['u'],edge['v'],edge['weight'],adjMatrix,costMatrix)
+			denominator += costMatrix[edge['u']][edge['v']]
+		for edge in Graph.edges:
+			edge['weight'] = costMatrix[edge['u']][edge['v']] * ((len(Graph.edges))/denominator)
 
-		if normalize:
-			norm = 0
-			for edge in Graph.edges:
-				norm += edge['weight']*edge['curvature']
-			for edge in Graph.edges:
-				edge['weight'] = edge['weight'] + -1*edge['curvature']*edge['weight'] + edge['weight']*norm
+		#recompute cost matrix with normalized edge weights
+		adjMatrix = Graph.getAdjacencyMatrix()
+		costMatrix = Graph.getCostMatrix(adjMatrix)
 
-		elif not normalize:
-			for edge in Graph.edges:
-				edge['weight'] = edge['weight'] + -1*edge['curvature']*edge['weight']
+		for edge in Graph.edges:
+			m_u = computeMassDistribution(edge['u'],adjMatrix,costMatrix)
+			m_v = computeMassDistribution(edge['v'],adjMatrix,costMatrix)
+			d = costMatrix[edge['u']][edge['v']]
+			w = ot.emd2(m_u,m_v,costMatrix)
+			#w = ot.sinkhorn2(m_u,m_v,costMatrix,0.1, method='sinkhorn')
+			try:
+				edge['curvature'] = 1 - (w/d)
+			except: #avoid float division by zero
+				edge['curvature'] = 1 - (w/epsilon)
+			
+			edge['weight'] = (costMatrix[edge['u']][edge['v']]) - (stepSize * edge['curvature'] * costMatrix[edge['u']][edge['v']])
+			
+
 
 
 	#Display results and end graph
+	cutEdges(Graph,4)
 	for edge in Graph.edges:
 		print(edge)
-	cutEdges(Graph,2)
-	for edge in Graph.edges:
-		print(edge)
 
-	communities = myGraph.getCommunities()
-	Graph.drawGraph(display=True,savePath='testfootballW4.gexf', communities=communities)
+	Graph.drawGraph(display=False,savePath='graphOutputs/test2.gexf')
 
-
-
-myGraph = graphClass.CurvatureGraph(graphNetworks.football)
-Ollivier(myGraph,maxIterations=50,normalize=False)
-
+myGraph = graphClass.CurvatureGraph(graphNetworks.zacharyKarateClub)
+Ollivier(myGraph,maxIterations=100,stepSize=1)
 

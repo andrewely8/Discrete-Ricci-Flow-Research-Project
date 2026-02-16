@@ -54,9 +54,9 @@ def cutEdges(Graph, cutThreshold):
 			print('removed edge: ', edge)
 
 
-#gamma(x) = 1/x 
+#gamma(x) = x 
 def gamma(x):
-	return 1/x
+	return x
 
 
 def GammaLLY(Graph,maxIterations,normalize=True):
@@ -69,6 +69,7 @@ def GammaLLY(Graph,maxIterations,normalize=True):
 			edge['weight'] = edge['weight']/totalWeight
 
 	for iteration in range(maxIterations):
+		print('iteration -- ', iteration)
 		adjMatrix = Graph.getAdjacencyMatrix()
 		costMatrix = Graph.getCostMatrix(adjMatrix)
 		for edge in Graph.edges:
@@ -92,8 +93,8 @@ def GammaLLY(Graph,maxIterations,normalize=True):
 	cutEdges(Graph,2)
 	for edge in Graph.edges:
 		print(edge)
-	Graph.drawGraph(display=True,savePath='testFootballGammaLLY.gexf')
+	Graph.drawGraph(display=True)
 
 
-myGraph = graphClass.CurvatureGraph(graphNetworks.football)
+myGraph = graphClass.CurvatureGraph(graphNetworks.zacharyKarateClub)
 GammaLLY(myGraph,maxIterations=10,normalize=False)
