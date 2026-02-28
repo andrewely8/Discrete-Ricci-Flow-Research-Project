@@ -7,29 +7,35 @@ import ot
 import sys
 from prettytable import PrettyTable
 
-# triangle with 1 more edge
-# graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1), (2, 3, 1),]
-
 # complete 3-graph
 #graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1),]
 
+# complete 3-graph with 1 more edge
+# graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1), (2, 3, 1),]
+
 # complete 4-graph
 #graphInput = [(0, 1, 1), (0, 2, 1), (0, 3, 1), (1, 2, 1), (2, 3, 1),(1, 3, 1),]
+
+# complete 4-graph with 1 more edge
 #graphInput = [(0, 1, 1), (0, 2, 1), (0, 3, 1), (1, 2, 1), (2, 3, 1),(1, 3, 1),(3,4,1)]
 
 # complete 5-graph
-# graphInput = [(0, 1, 1), (0, 2, 1), (0, 3, 1), (0, 4, 1), (1, 2, 1), (1, 3, 1), (1, 4, 1), (2, 3, 1), (2, 4, 1), (3, 4, 1)]
+#graphInput = [(0, 1, 1), (0, 2, 1), (0, 3, 1), (0, 4, 1), (1, 2, 1), (1, 3, 1), (1, 4, 1), (2, 3, 1), (2, 4, 1), (3, 4, 1)]
+
+# complete 5-graph with 1 more edge
+#graphInput = [(0, 1, 1), (0, 2, 1), (0, 3, 1), (0, 4, 1), (1, 2, 1), (1, 3, 1), (1, 4, 1), (2, 3, 1), (2, 4, 1), (3, 4, 1), (4,5,1)]
 
 # complete 6-graph
-graphInput = [(0,1,1), (0,2,1), (0,3,1), (0,4,1), (0,5,1), (1,2,1), (1,3,1), (1,4,1), (1,5,1), (2,3,1), (2,4,1), (2,5,1), (3,4,1), (3,5,1), (4,5,1),]
+#graphInput = [(0,1,1), (0,2,1), (0,3,1), (0,4,1), (0,5,1), (1,2,1), (1,3,1), (1,4,1), (1,5,1), (2,3,1), (2,4,1), (2,5,1), (3,4,1), (3,5,1), (4,5,1),]
 
-
+# complete 6-graph with 1 more edge
+graphInput = [(0,1,1), (0,2,1), (0,3,1), (0,4,1), (0,5,1), (1,2,1), (1,3,1), (1,4,1), (1,5,1), (2,3,1), (2,4,1), (2,5,1), (3,4,1), (3,5,1), (4,5,1), (5,6,1),]
 
 epsilon = 10**(-3)
 
 # gamma(x) = x  for now.
 def gamma(x):
-	return 1/x
+	return x
 
 def computeMassDistribution(vertex,adjMatrix,alpha=0):
 	neighborSet = adjMatrix[vertex]
@@ -51,7 +57,7 @@ def computeMassDistribution(vertex,adjMatrix,alpha=0):
 	return distribution
 
 
-def displayTransportTable(costMatrix,supply,demand):
+def displayTransportTable(costMatrix,supply,demand,optimalCost,optimalPlan):
 	
 	header = ["", " ",]
 	firstRow = ['','']
@@ -70,10 +76,31 @@ def displayTransportTable(costMatrix,supply,demand):
 		t.add_row(row)
 		t.add_divider()
 	
-	print(t, "\n\n\n\n")
+	print(t)
+	print("optimal transportation plan: \n", optimalPlan['G'].T)
+	print("optimal transportation cost: ", optimalCost)
+	print("\n\n\n\n")
 
-def Ollivier(Graph,maxIterations,normalize=True):
+
+def deleteZeroWeightEdges(Graph):
+	for edge in Graph.edges[:]: #iterate over a copy of the list
+		if edge['weight'] <= epsilon:
+			Graph.removeEdge(edge)
+			print('removed edge: ', edge)
+
+
+def checkDistances(Graph,costMatrix,violation):
+	for edge in Graph.edges:
+		if costMatrix[edge['u']][edge['v']] != edge['weight']:
+			print(f'\tshortest path between {edge['u']} and {edge['v']} is not edge weight ({edge['u']},{edge['v']})')
+			violation = True
+	print('')
+	return(violation)
+
+def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTransportTables=True):
 	
+	violation = False #used to check if at any iteration we w(u,v) != d(u,v).
+
 	if normalize: #normalize at t=0 before flow evolution
 		totalWeight = 0
 		for edge in Graph.edges:
@@ -86,17 +113,24 @@ def Ollivier(Graph,maxIterations,normalize=True):
 		adjMatrix = Graph.getAdjacencyMatrix()
 		costMatrix = Graph.getCostMatrix(adjMatrix)
 
+		violation = checkDistances(Graph,costMatrix,violation)
 		
 		for edge in Graph.edges:
 			m_u = computeMassDistribution(edge['u'],adjMatrix)
 			m_v = computeMassDistribution(edge['v'],adjMatrix)
 			d = costMatrix[edge['u']][edge['v']]
-			w = ot.emd2(m_u,m_v,costMatrix)
+			if displayTransportTables and edge['u']==1 and edge['v']==2: #ONLY LOOKING AT ONE EDGE FOR NOW
+				emd = ot.emd2(m_u,m_v,costMatrix,return_matrix=True)
+				w = emd[0]
+				plan = emd[1]
+				print(f'EDGE ({edge['u']}, {edge['v']})')
+				displayTransportTable(costMatrix,m_u,m_v,w,plan)
+			else:
+				w =  ot.emd2(m_u,m_v,costMatrix)
 			try:
 				edge['curvature'] = 1 - (w/d)
 			except: #avoid float division by zero
 				edge['curvature'] = 1 - (w/epsilon)
-			#displayTransportTable(costMatrix,m_u,m_v)
 
 		if normalize:
 			norm = 0
@@ -110,12 +144,24 @@ def Ollivier(Graph,maxIterations,normalize=True):
 				edge['weight'] = edge['weight'] + -1*edge['curvature']*edge['weight']
 
 
+	print('\n-- Finished Ricci Flow -- ')
+	if violation:
+		print(f'distance vs edge weight: d(u,v) does not equal w(u,v) for some time')
+	else:
+		print(f'distance vs edge weight: d(u,v) = w(u,v) for all time')
+
+	#remove 0 weight edges
+	if removeZeroWeight:
+		deleteZeroWeightEdges(Graph)
+		print('')
+
 	#Display results and end graph
+	print('Final edge weights and curvatures: \n')
 	for edge in Graph.edges:
 		print(edge)
-	Graph.drawGraph(display=False)
+	Graph.drawGraph(display=True)
 
 
 
 myGraph = graphClass.CurvatureGraph(graphInput)
-Ollivier(myGraph,maxIterations=2,normalize=True)
+Ollivier(myGraph,maxIterations=12,normalize=True,removeZeroWeight=True,displayTransportTables=True)
