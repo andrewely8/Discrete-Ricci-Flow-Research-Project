@@ -31,6 +31,12 @@ from prettytable import PrettyTable
 # complete 6-graph with 1 more edge
 #graphInput = [(0,1,1), (0,2,1), (0,3,1), (0,4,1), (0,5,1), (1,2,1), (1,3,1), (1,4,1), (1,5,1), (2,3,1), (2,4,1), (2,5,1), (3,4,1), (3,5,1), (4,5,1), (5,6,1),]
 
+#Two complete 3 graphs connected by 1 edge.
+#graphInput = [(0,1,1),(0,2,1),(2,1,1),(2,3,1),(3,4,1),(3,5,1),(4,5,1),]
+
+
+#complete 3 graph with more edge, with an extended path.
+#graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1), (2, 3, 1),(3,4,1),(4,5,1),]
 
 
 epsilon = 10**(-5)
@@ -39,7 +45,7 @@ epsilon = 10**(-5)
 def gamma(x):
 	return x
 
-def computeMassDistribution(vertex,adjMatrix,alpha=0):
+def computeMassDistribution(vertex,adjMatrix,alpha=0.2):
 	neighborSet = adjMatrix[vertex]
 	distribution = [0 for _ in range(len(neighborSet))]
 	sumAdjacentGammaWeights = 0
@@ -170,4 +176,4 @@ def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTra
 
 
 myGraph = graphClass.CurvatureGraph(graphInput)
-Ollivier(myGraph,maxIterations=50,normalize=True,removeZeroWeight=True,displayTransportTables=True)
+Ollivier(myGraph,maxIterations=12,normalize=True,removeZeroWeight=True,displayTransportTables=True)
