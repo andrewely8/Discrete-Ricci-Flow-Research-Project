@@ -11,7 +11,7 @@ from prettytable import PrettyTable
 #graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1),]
 
 # complete 3-graph with 1 more edge
-# graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1), (2, 3, 1),]
+#graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1), (2, 3, 1),]
 
 # complete 4-graph
 #graphInput = [(0, 1, 1), (0, 2, 1), (0, 3, 1), (1, 2, 1), (2, 3, 1),(1, 3, 1),]
@@ -29,9 +29,11 @@ from prettytable import PrettyTable
 #graphInput = [(0,1,1), (0,2,1), (0,3,1), (0,4,1), (0,5,1), (1,2,1), (1,3,1), (1,4,1), (1,5,1), (2,3,1), (2,4,1), (2,5,1), (3,4,1), (3,5,1), (4,5,1),]
 
 # complete 6-graph with 1 more edge
-graphInput = [(0,1,1), (0,2,1), (0,3,1), (0,4,1), (0,5,1), (1,2,1), (1,3,1), (1,4,1), (1,5,1), (2,3,1), (2,4,1), (2,5,1), (3,4,1), (3,5,1), (4,5,1), (5,6,1),]
+#graphInput = [(0,1,1), (0,2,1), (0,3,1), (0,4,1), (0,5,1), (1,2,1), (1,3,1), (1,4,1), (1,5,1), (2,3,1), (2,4,1), (2,5,1), (3,4,1), (3,5,1), (4,5,1), (5,6,1),]
 
-epsilon = 10**(-3)
+
+
+epsilon = 10**(-5)
 
 # gamma(x) = x  for now.
 def gamma(x):
@@ -100,6 +102,7 @@ def checkDistances(Graph,costMatrix,violation):
 def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTransportTables=True):
 	
 	violation = False #used to check if at any iteration we w(u,v) != d(u,v).
+	Graph.drawGraph(display=True)
 
 	if normalize: #normalize at t=0 before flow evolution
 		totalWeight = 0
@@ -114,8 +117,15 @@ def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTra
 		costMatrix = Graph.getCostMatrix(adjMatrix)
 
 		violation = checkDistances(Graph,costMatrix,violation)
+
+		#remove 0 weight edges
+		if removeZeroWeight:
+			deleteZeroWeightEdges(Graph)
+			print('')
 		
 		for edge in Graph.edges:
+
+
 			m_u = computeMassDistribution(edge['u'],adjMatrix)
 			m_v = computeMassDistribution(edge['v'],adjMatrix)
 			d = costMatrix[edge['u']][edge['v']]
@@ -150,10 +160,6 @@ def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTra
 	else:
 		print(f'distance vs edge weight: d(u,v) = w(u,v) for all time')
 
-	#remove 0 weight edges
-	if removeZeroWeight:
-		deleteZeroWeightEdges(Graph)
-		print('')
 
 	#Display results and end graph
 	print('Final edge weights and curvatures: \n')
@@ -164,4 +170,4 @@ def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTra
 
 
 myGraph = graphClass.CurvatureGraph(graphInput)
-Ollivier(myGraph,maxIterations=12,normalize=True,removeZeroWeight=True,displayTransportTables=True)
+Ollivier(myGraph,maxIterations=50,normalize=True,removeZeroWeight=True,displayTransportTables=True)
