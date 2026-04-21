@@ -38,12 +38,28 @@ from prettytable import PrettyTable
 #complete 3 graph with more edge, with an extended path.
 #graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1), (2, 3, 1),(3,4,1),(4,5,1),]
 
+#complete 3 graph with one more edge from each node. 
+#graphInput = [(0, 1, 1), (0, 2, 1), (1, 2, 1),(0,3,1),(1,4,1),(2,5,1)]
+
+
+
+#'caterpillar trees' with center nodes as complete 3 graphs.
+# graphInput = [(0,1,1),(0,2,1),(1,2,1),(1,3,1),(2,4,1),(4,5,1),
+# 			  (4,6,1),(5,6,1),(5,7,1),(6,8,1),(8,10,1),(8,9,1),
+# 			  (9,10,1),(10,11,1),(10,12,1),(10,13,1),(10,14,1),
+# 			  (9,15,1),(15,17,1),(15,16,1),(16,17,1),(16,18,1),
+# 			  (18,20,1),(18,19,1),(19,20,1),(20,21,1),]
+
+graphInput = [(0,1,1),(0,2,1),(1,2,1),(1,3,1),(2,4,1),(4,5,1),(5,6,1),(4,6,1),
+			  (5,7,1),(5,8,1),(5,9,1)]
+
+
 
 epsilon = 10**(-5)
 
 # gamma(x) = x  for now.
 def gamma(x):
-	return x
+	return 1/x
 
 def computeMassDistribution(vertex,adjMatrix,alpha=0.2):
 	neighborSet = adjMatrix[vertex]
@@ -176,4 +192,4 @@ def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTra
 
 
 myGraph = graphClass.CurvatureGraph(graphInput)
-Ollivier(myGraph,maxIterations=12,normalize=True,removeZeroWeight=True,displayTransportTables=True)
+Ollivier(myGraph,maxIterations=200,normalize=True,removeZeroWeight=True,displayTransportTables=True)
