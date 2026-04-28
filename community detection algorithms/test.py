@@ -56,6 +56,8 @@ graphInput = [(0,1,1),(0,2,1),(1,2,1),(1,3,1),(2,4,1),(4,5,1),(5,6,1),(4,6,1),
 
 
 epsilon = 10**(-5)
+dt = 0.001 #derivative step rate
+alpha = 0.99 #for LLY curavture limit as alpha -> 1
 
 # gamma(x) = x  for now.
 def gamma(x):
@@ -135,16 +137,17 @@ def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTra
 
 	for iteration in range(maxIterations):
 		print('iteration -- ', iteration)
-		adjMatrix = Graph.getAdjacencyMatrix()
-		costMatrix = Graph.getCostMatrix(adjMatrix)
-
-		violation = checkDistances(Graph,costMatrix,violation)
 
 		#remove 0 weight edges
 		if removeZeroWeight:
 			deleteZeroWeightEdges(Graph)
 			print('')
-		
+
+		adjMatrix = Graph.getAdjacencyMatrix()
+		costMatrix = Graph.getCostMatrix(adjMatrix)
+
+		violation = checkDistances(Graph,costMatrix,violation)
+
 		for edge in Graph.edges:
 
 
@@ -160,20 +163,23 @@ def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTra
 			else:
 				w =  ot.emd2(m_u,m_v,costMatrix)
 			try:
-				edge['curvature'] = 1 - (w/d)
+				k_alpha = 1 - (w/d)
+				edge['curvature'] = k_alpha / (1-alpha)
 			except: #avoid float division by zero
-				edge['curvature'] = 1 - (w/epsilon)
+				k_alpha = 1 - (w/epsilon)
+				edge['curvature'] = k_alpha / (1-alpha)
+				
 
 		if normalize:
 			norm = 0
 			for edge in Graph.edges:
 				norm += edge['weight']*edge['curvature']
 			for edge in Graph.edges:
-				edge['weight'] = edge['weight'] + -1*edge['curvature']*edge['weight'] + edge['weight']*norm
+				edge['weight'] = edge['weight'] + dt * (-1*edge['curvature']*edge['weight'] + edge['weight']*norm)
 
 		elif not normalize:
 			for edge in Graph.edges:
-				edge['weight'] = edge['weight'] + -1*edge['curvature']*edge['weight']
+				edge['weight'] = edge['weight'] + dt * (-1*edge['curvature']*edge['weight'])
 
 
 	print('\n-- Finished Ricci Flow -- ')
@@ -192,4 +198,4 @@ def Ollivier(Graph,maxIterations,normalize=True,removeZeroWeight=True,displayTra
 
 
 myGraph = graphClass.CurvatureGraph(graphInput)
-Ollivier(myGraph,maxIterations=200,normalize=True,removeZeroWeight=True,displayTransportTables=True)
+Ollivier(myGraph,maxIterations=1000,normalize=True,removeZeroWeight=True,displayTransportTables=True)
