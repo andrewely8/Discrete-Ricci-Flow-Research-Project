@@ -8,16 +8,7 @@ import matplotlib.pyplot as plt
 import random 
 import forceatlas2 
 
-from sknetwork.embedding.force_atlas import ForceAtlas
-from sknetwork.visualization import visualize_graph
 
-
-
-# G = nx.karate_club_graph() 
-# pos = { i : (random.random(), random.random()) for i in G.nodes()} # Optionally specify positions as a dictionary 
-# l = forceatlas2.forceatlas2_networkx_layout(G, niter=1000) # Optionally specify iteration count 
-# nx.draw_networkx(G, l) 
-# plt.show()
 
 
 #unique colors for node labeling
@@ -180,8 +171,6 @@ class CurvatureGraph(object):
 		edge_weight_labels = nx.get_edge_attributes(nxGraph, 'label')
 		edge_curvature_labels = nx.get_edge_attributes(nxGraph, "curvature")
 		
-		if savePath:
-			nx.write_gexf(nxGraph,savePath)
 		if display:
 			pos = forceatlas2.forceatlas2_networkx_layout(nxGraph, niter=100)
 			nx.draw_networkx_nodes(nxGraph, pos, node_size=500)
@@ -191,12 +180,10 @@ class CurvatureGraph(object):
 			nx.draw_networkx_edges(nxGraph, pos, edgelist=posEdges, width=1, alpha=0.5, edge_color="skyblue")
 			nx.draw_networkx_edge_labels(nxGraph, pos, edge_curvature_labels,font_size=8)
 			nx.draw_networkx_edge_labels(nxGraph, pos, edge_weight_labels,font_size=8)
-			plt.show()
+			if savePath:
+				plt.savefig(savePath)
+				plt.close()
+			else:
+				plt.show()
 
 		return(nxGraph) #if we want the networkX data structure.
-
-
-
-def drawGraphWithForceAtlas(self,display=True,savePath=None, communities = None):
-		pass
-		#create a sci kit graph from Graph.edges and display with sci-kit forceatlas.
