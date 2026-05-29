@@ -1,4 +1,6 @@
 #Ricci Curvature for trees which follows a simplified algorithm due to the non-cyclic structure of trees.
+#Reference: 
+
 
 #Binary Tree
 # V = 15
@@ -38,21 +40,16 @@ def computeD(vertex,edgeSet):
 	return D
 
 
-#mode = 'values' := we are passing a tree with numerical edge weights like 0,2,5,3 etc.
-#mode = 'equations' := we are passing a tree with variable edge weights like w_{11},w{ab},w{uv}, etc.
-def computeCurvatures(edgeSet,degrees,mode):
-	if mode == 'values':
-		curvatures = [0 for _ in range(len(edgeSet))]
-		for i,edge in enumerate(edgeSet):
-			u = edge[0]
-			v = edge[1]
-			weight = edge[2]
-			Du = computeD(u,edgeSet)
-			Dv = computeD(v,edgeSet)
-			curvatures[i] = (2-degrees[u])/(weight*Du) + (2-degrees[v])/(weight*Dv)
 
-	elif mode == 'equations':
-		curvatures = ['' for _ in range(len(degrees))] #len of degrees is the number of vertices
+def computeCurvatures(edgeSet,degrees):
+	curvatures = [0 for _ in range(len(edgeSet))]
+	for i,edge in enumerate(edgeSet):
+		u = edge[0]
+		v = edge[1]
+		weight = edge[2]
+		Du = computeD(u,edgeSet)
+		Dv = computeD(v,edgeSet)
+		curvatures[i] = (2-degrees[u])/(weight*Du) + (2-degrees[v])/(weight*Dv)
 
 	return curvatures
 
@@ -101,7 +98,7 @@ def ricciFlowValues(edgeSet,numVerticies,iterations, mode):
 			if edge[2] == 0:
 				edge[2] = 0.000001
 
-		curvatures = computeCurvatures(edgeSet,degrees,'values')
+		curvatures = computeCurvatures(edgeSet,degrees)
 		if mode == 'normalized':
 			flows = computeNormalizedFlow(curvatures,edgeSet)
 		elif mode == 'unnormalized':

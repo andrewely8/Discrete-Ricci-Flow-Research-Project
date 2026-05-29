@@ -9,6 +9,12 @@ import sys
 import matplotlib.pyplot as plt
 from prettytable import PrettyTable
 
+'''
+An implementaion of LLY Ricci Flow 
+reference: 
+'''
+
+
 epsilon = 10**(-5)
 deleteThreshold = 0.05
 dt = 0.25 #derivative step rate

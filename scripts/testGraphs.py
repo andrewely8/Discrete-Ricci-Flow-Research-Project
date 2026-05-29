@@ -1,3 +1,6 @@
+'''
+graphs is a mapping of graph name to a list of edges. An edge is a tuple (u,v,edge_weight).
+'''
 graphs = {
 	
 	#complete 3 graph plus one edge

@@ -1,3 +1,8 @@
+'''
+Cleans the formatting of graph datasets, produces output.txt.
+./scripts/graphNetworks.py is created using the output.txt for each graph network raw input.
+'''
+
 
 inputFile = 'email-Eu-core/email-Eu-core.txt'
 outputFile = 'outputGraph.txt'

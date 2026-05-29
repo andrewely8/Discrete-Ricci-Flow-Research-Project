@@ -1,6 +1,14 @@
 '''
-A collection of various graph networks
-graphs will be a list of tuples (u,v,edge_weight)
+A collection of various graph networks.
+Graphs are stored as a list of tuples (u,v,edge_weight).
+These are large real world graph networks which can be used
+to test the community detection application of Discrete Ricci Flow.
+More information and the source of the graph data:
+zacharyKarateClub:
+football: http://konect.cc/networks/dimacs10-football/
+polbooks: http://konect.cc/networks/dimacs10-polbooks/
+euEmailCore: https://snap.stanford.edu/data/email-Eu-core.html
+
 '''
 
 zacharyKarateClub = [
