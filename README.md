@@ -1,19 +1,19 @@
 This is an undergraduate level research project I completed during my Senior year at Rutgers University.
 I met weekly with Dr. Junming Xie over the 2025-2026 academic year to discuss the topic.
 
-
+\
 
 Topic: Long-time behavior of Discrete Ricci Flow on Graphs.
     In differential geometry, Hamilton's Ricci Flow is a partial differential system that evolves a Riemannian metric. It is analogous to the diffusion of heat and the heat equation. Discrete Ricci Flow is an adaptation of Hamilton's Ricci Flow that is applied to discrete metric spaces, such as graph networks. The main application of Discrete Ricci Flow is its utility for community detection algorithms in large graph networks. The long time behavior of Discrete Ricci Flow on discrete metric spaces is an open problem, with emerging literature classifying the long time convergence properties of Discrete Ricci Flow on special graph structures.
 
-
+\
 
 Main Contents of Project:
     During this project, I examined the long time behavior of Discrete Ricci Flow on specific graph structures and,
     - Wrote Python code to simulate the Discrete Ricci Flow on graphs and preform experimental results.
     - Wrote a final paper draft containing formal proofs of convergence on specific graph structures.
 
-
+\
 
 Project Files:
 AndrewEly_DiscreteRicciFlow.pdf       Final draft of paper
@@ -23,7 +23,7 @@ experimentalResults.pdf               Experimental results of Discrete Ricci Flo
 README.md                             this ReadMe file.
 
 
-
+\
 
 References:
 
