@@ -18,6 +18,7 @@ README.md                             this ReadMe file.
 
 
 References:
+
 \[1\] Richard Hamilton. Three-manifolds with positive ricci curvature. Journal of Differential Geometry, 17:255–362, 06 1982.
 
 \[2\] G. Perelman. The entropy formula for the ricci flow and its geometric applications. arXiv
