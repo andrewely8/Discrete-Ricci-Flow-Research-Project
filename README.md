@@ -1,5 +1,5 @@
 This is an undergraduate level research project I completed during my Senior year at Rutgers University.
-I met weekly with Dr. Junming Xie over the 2025-2026 academic year to discuss the topic.
+I met weekly with Dr. Junming Xie over the 2025-2026 academic year to discuss the topic. I am very grateful for his guidance with completing the project.
 
 <br/>
 
@@ -35,27 +35,28 @@ README.md                             this ReadMe file.
 
 References:
 
-\[1\] Richard Hamilton. Three-manifolds with positive ricci curvature. Journal of Differential Geometry, 17:255–362, 06 1982.
+\[1\] Richard Hamilton. Three-manifolds with positive ricci curvature. Journal of Differential Geometry, 17:255–306, 1982.
 
-\[2\] G. Perelman. The entropy formula for the ricci flow and its geometric applications. arXiv
-preprint math/0211159, 2002.
+\[2\] Grisha Perelman. The entropy formula for the ricci flow and its geometric applications.
+arXiv:math/0211159v1, 2002.
 
 \[3\] Yong Lin and Shing-Tung Yau. Ricci curvature and eigenvalue estimate on locally finite graphs.
-Mathematical Research Letter, 17:345–358, 2010.
+Mathematical research letters, 17:345–358, 2010.
 
-\[4\] R. Forman. Bochner’s method for cell complexes and combinatorial ricci curvature. Discrete &
-Computational Geometry, 29(3):323–374, 2003.
+\[4\] Robin Forman. Bochner’s method for cell complexes and combinatorial ricci curvature. Discrete
+& Computational Geometry, 29:323–374, 2003.
 
-\[5\] Yann Ollivier. Ricci curvature of markov chains on metric spaces. Journal of Functional Analysis, 256:810–864, 02 2009.
+\[5\] Yann Ollivier. Ricci curvature of markov chains on metric spaces. Journal of Functional Analysis, 256:810–864, 2009.
 
 \[6\] Yong Lin, Linyuan Lu, and Shing-Tung Yau. Ricci curvature of graphs. Tohoku Mathematical
-Journal, 63, 12 2011.
+Journal, 63, 2011.
 
 \[7\] Chien-Chun Ni, Yu-Yao Lin, Feng Luo, and Jie Gao. Community detection on networks with
-ricci flow. Scientific Reports, 9, 07 2019
+ricci flow. Scientific Reports, 9, 2019.
 
-\[8\] Shuliang Bai, Bobo Hua, Yong Lin, and Shuang Liu. On the ricci flow on trees. arXiv:2509.22140,
-2025.
+\[8\] Shuliang Bai, Bobo Hua, Yong Lin, and Shuang Liu. On the ricci flow on trees.
+arXiv:2509.22140, 2025.
 
 \[9\] Shuliang Bai, Yong Lin, Linyuan Lu, Zhiyu Wang, and Shing-Tung Yau. Ollivier ricci-flow on
-weighted graphs. American Journal of Mathematics, 146(4), 2024
+weighted graphs. American Journal of Mathematics, 146(4), 2024.
+
